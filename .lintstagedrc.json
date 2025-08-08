@@ -3,7 +3,8 @@
     "npx eslint --fix --config eslint.config.js",
     "npx prettier --write"
   ],
-  "*.css": [
+  "*.{css,module.css}": [
+    "stylelint --fix",
     "prettier --write"
   ]
 }
