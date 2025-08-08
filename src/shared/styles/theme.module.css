@@ -1,0 +1,11 @@
+:root {
+  /* Button colors */
+  --color-button-primary: #1665d8;
+  --color-button-primary-hover: #2370e4;
+  --color-button-primary-active: #3a80e9;
+  --color-text-on-primary: #fff;
+
+  /* Common styles */
+  --border-radius: 0.25rem;
+  --transition: all 0.3s ease-in-out;
+}
