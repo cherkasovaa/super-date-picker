@@ -1,0 +1,9 @@
+.popover {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.trigger {
+  display: inline-block;
+}
