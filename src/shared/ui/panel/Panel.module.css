@@ -1,0 +1,39 @@
+.panel {
+  pointer-events: auto;
+
+  overflow: hidden;
+
+  min-inline-size: 150px;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+
+  background-color: var(--card-bg-color);
+  box-shadow: var(--box-shadow);
+}
+
+.popover-panel {
+  position: absolute;
+  z-index: 2000;
+  transform: translateX(var(--panel-shift-x));
+  background-color: var(--card-bg-color);
+}
+
+.place-bottom {
+  top: calc(100% + var(--panel-offset));
+  bottom: auto;
+}
+
+.place-top {
+  top: auto;
+  bottom: calc(100% + var(--panel-offset));
+}
+
+.align-start {
+  right: auto;
+  left: 0;
+}
+
+.align-end {
+  right: 0;
+  left: auto;
+}
