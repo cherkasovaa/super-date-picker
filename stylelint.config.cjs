@@ -1,9 +1,6 @@
 module.exports = {
   files: ['src/**/*.css', 'src/**/*.module.css'],
-  extends: [
-    'stylelint-config-standard',
-    'stylelint-config-clean-order'
-  ],
+  extends: ['stylelint-config-standard', 'stylelint-config-clean-order'],
 
   rules: {
     'order/order': [
@@ -21,9 +18,6 @@ module.exports = {
     'block-no-empty': true,
     'no-duplicate-selectors': true,
     'selector-pseudo-class-no-unknown': true,
-    'property-no-unknown': [
-      true,
-      { ignoreProperties: ['composes'] },
-    ],
+    'property-no-unknown': [true, { ignoreProperties: ['composes'] }],
   },
 };
