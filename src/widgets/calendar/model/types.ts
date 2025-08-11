@@ -18,3 +18,8 @@ export interface CalendarHeaderProps {
   onPrev: () => void;
   onNext: () => void;
 }
+
+export interface CalendarProps {
+  value?: Date | null;
+  onChange: (date: Date) => void;
+}
