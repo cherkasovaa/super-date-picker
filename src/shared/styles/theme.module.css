@@ -10,9 +10,13 @@
     rgb(0 0 0 / 8%) 0px 0.9px 4px, rgb(0 0 0 / 6%) 0px 2.6px 8px, rgb(0 0 0 / 5%) 0px 5.7px 12px,
     rgb(0 0 0 / 4%) 0px 15px 15px;
   --color-text-primary: #242424;
+  --color-text-primary-mute: #515151;
+  --color-error: #8a0000;
+  --color-success: #008a5e;
 
   /* Common styles */
   --border-radius: 0.25rem;
+  --border-color-light: #f1f1f1;
   --transition: all 0.3s ease-in-out;
   --card-bg-color: #fff;
   --background-color: #f1f1f1;
