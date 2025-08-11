@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styles from './App.module.css';
 
 function App() {
-  const [range, setRange] = useState<DateRange>({ from: 'now', to: 'now' });
+  const [range, setRange] = useState<DateRange>({ from: null, to: null });
 
   return (
     <div className={styles.wrapper}>
