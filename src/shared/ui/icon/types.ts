@@ -1,4 +1,4 @@
-export type IconType = 'calendar' | 'chevronRight';
+export type IconType = 'calendar' | 'chevronRight' | 'chevronLeft';
 
 export interface IconProps {
   name: IconType;
