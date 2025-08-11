@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  flex: 1;
+  border-radius: var(--border-radius);
+  background-color: var(--card-bg-color);
+}
+
+.date-popover-button {
+  inline-size: 100%;
+  padding: 0.625rem 0.5rem;
+  color: var(--color-text-primary);
+  background-color: transparent;
+}
+
+.date-popover-button:hover {
+  color: var(--color-text-primary);
+  background-color: var(--card-bg-color);
+}
+
+.text {
+  display: flex;
+  align-items: center;
+}
