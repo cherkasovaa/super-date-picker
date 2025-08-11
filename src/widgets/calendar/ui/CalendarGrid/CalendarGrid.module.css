@@ -1,0 +1,48 @@
+.container {
+  margin-top: 1rem;
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-weight: bold;
+}
+
+.month {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.1rem;
+  margin-top: 0.5rem;
+}
+
+.day-names,
+.day-number {
+  text-align: center;
+}
+
+.day-number {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem;
+  border-radius: 50%;
+
+  color: var(--color-text-primary-mute);
+
+  background-color: transparent;
+}
+
+.day-number.active {
+  color: var(--color-text-primary);
+}
+
+.day-number:hover,
+.day-number.selected {
+  color: var(--color-text-on-primary);
+  background-color: var(--color-button-primary-active);
+}
