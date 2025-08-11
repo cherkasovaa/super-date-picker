@@ -7,15 +7,18 @@
   padding: 1rem;
   border-radius: var(--border-radius);
 
+  text-align: center;
+
   background-color: var(--card-bg-color);
-  box-shadow: var(--box-shadow);
 }
 
 .popover-panel {
   position: absolute;
   z-index: 2000;
   transform: translateX(var(--panel-shift-x));
+
   background-color: var(--card-bg-color);
+  box-shadow: var(--box-shadow);
 }
 
 .place-bottom {

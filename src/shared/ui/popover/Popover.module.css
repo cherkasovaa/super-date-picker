@@ -2,8 +2,15 @@
   cursor: pointer;
   position: relative;
   display: inline-block;
+  flex: 1 1 100%;
 }
 
 .trigger {
   display: inline-block;
+  inline-size: 100%;
+}
+
+.trigger-open {
+  border-radius: var(--border-radius);
+  outline: 2px solid var(--color-button-primary);
 }

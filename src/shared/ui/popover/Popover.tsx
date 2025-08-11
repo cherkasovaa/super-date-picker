@@ -76,7 +76,11 @@ export const Popover = ({ trigger, children, offset = 8 }: PopoverProps) => {
 
   return (
     <div ref={rootRef} className={styles.popover}>
-      <div ref={triggerRef} className={styles.trigger} onClick={handleToggleVisible}>
+      <div
+        ref={triggerRef}
+        className={`${styles.trigger} ${isOpen && styles.triggerOpen}`}
+        onClick={handleToggleVisible}
+      >
         {trigger}
       </div>
 
