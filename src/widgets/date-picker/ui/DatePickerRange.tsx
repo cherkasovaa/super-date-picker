@@ -1,29 +1,36 @@
 import { Button, Icon, Popover } from '@/shared/ui';
+import { cn } from '@/shared/utils/cn';
 import { formatLabel } from '@/shared/utils/formatLabel';
+import { Calendar } from '@/widgets/calendar';
 import type { DatePickerRangeProps } from '@/widgets/date-picker/model/types';
 import styles from './DatePickerRange.module.css';
 
-export const DatePickerRange = ({
-  value,
-  // onChange,
-  placeholderFrom = 'Choose start date',
-  placeholderTo = 'Choose end date',
-}: DatePickerRangeProps) => {
-  const labelFrom = formatLabel(value.from) ?? placeholderFrom;
-  const labelTo = formatLabel(value.to) ?? placeholderTo;
+export const DatePickerRange = ({ value, onChange, state }: DatePickerRangeProps) => {
+  const labelFrom = formatLabel(value.from) ?? 'Choose start date';
+  const labelTo = formatLabel(value.to) ?? 'Choose end date';
 
   return (
-    <div className={styles.wrapper}>
+    <div className={cn([styles.wrapper, state === 'error' && styles.error, state === 'success' && styles.success])}>
       <Popover
         trigger={
-          <Button title={`Update needed: ${labelFrom}`} className={styles.datePopoverButton}>
+          <Button
+            title={`Update needed: ${labelFrom}`}
+            className={cn([
+              styles.datePopoverButton,
+              state === 'error' && styles.error,
+              state === 'success' && styles.success,
+            ])}
+          >
             {labelFrom}
           </Button>
         }
       >
-        <div style={{ minWidth: 280 }}>
+        <div>
           <strong>Calendar (from)</strong>
-          <div style={{ marginTop: 8, opacity: 0.7 }}>Calendar will be here soon</div>
+          <Calendar
+            value={value.from instanceof Date ? value.from : null}
+            onChange={(date) => onChange({ ...value, from: date })}
+          />
         </div>
       </Popover>
       <div className={styles.text}>
@@ -31,14 +38,24 @@ export const DatePickerRange = ({
       </div>
       <Popover
         trigger={
-          <Button title={`Update needed: ${labelTo}`} className={styles.datePopoverButton}>
+          <Button
+            title={`Update needed: ${labelTo}`}
+            className={cn([
+              styles.datePopoverButton,
+              state === 'error' && styles.error,
+              state === 'success' && styles.success,
+            ])}
+          >
             {labelTo}
           </Button>
         }
       >
-        <div style={{ minWidth: 280 }}>
+        <div>
           <strong>Calendar (to)</strong>
-          <div style={{ marginTop: 8, opacity: 0.7 }}>Calendar will be here soon</div>
+          <Calendar
+            value={value.to instanceof Date ? value.to : null}
+            onChange={(date) => onChange({ ...value, to: date })}
+          />
         </div>
       </Popover>
     </div>

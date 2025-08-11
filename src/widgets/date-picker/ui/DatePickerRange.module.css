@@ -5,6 +5,14 @@
   background-color: var(--card-bg-color);
 }
 
+.wrapper.error {
+  background-color: rgb(from var(--color-error) r g b / 20%);
+}
+
+.wrapper.success {
+  background-color: rgb(from var(--color-success) r g b / 20%);
+}
+
 .date-popover-button {
   inline-size: 100%;
   padding: 0.625rem 0.5rem;
@@ -12,9 +20,17 @@
   background-color: transparent;
 }
 
+.date-popover-button.error {
+  color: var(--color-error);
+}
+
+.date-popover-button.success {
+  color: var(--color-success);
+}
+
 .date-popover-button:hover {
-  color: var(--color-text-primary);
-  background-color: var(--card-bg-color);
+  color: inherit;
+  background-color: inherit;
 }
 
 .text {
