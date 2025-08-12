@@ -1,11 +1,11 @@
 import { Panel } from '@/shared/ui';
 import type { PanelAlign, PanelPlacement } from '@/shared/ui/panel/types';
 import type { PopoverProps } from '@/shared/ui/popover/types';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { cn } from '@/shared/utils/cn';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './Popover.module.css';
 
-export const Popover = ({ trigger, children, offset = 8 }: PopoverProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+export const Popover = ({ isOpen, onClose, trigger, children, offset = 8 }: PopoverProps) => {
   const [placement, setPlacement] = useState<PanelPlacement>('bottom');
   const [align, setAlign] = useState<PanelAlign>('start');
   const [shiftX, setShiftX] = useState<number>(0);
@@ -13,6 +13,24 @@ export const Popover = ({ trigger, children, offset = 8 }: PopoverProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+
+      const isInsideClick = rootRef.current?.contains(target) || panelRef.current?.contains(target);
+
+      if (!isInsideClick) onClose();
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isOpen, onClose]);
 
   useLayoutEffect(() => {
     if (!isOpen) return;
@@ -72,15 +90,9 @@ export const Popover = ({ trigger, children, offset = 8 }: PopoverProps) => {
     };
   }, [isOpen, offset, align]);
 
-  const handleToggleVisible = () => setIsOpen((prev) => !prev);
-
   return (
     <div ref={rootRef} className={styles.popover}>
-      <div
-        ref={triggerRef}
-        className={`${styles.trigger} ${isOpen && styles.triggerOpen}`}
-        onClick={handleToggleVisible}
-      >
+      <div ref={triggerRef} className={cn([styles.trigger, isOpen && styles.triggerOpen])}>
         {trigger}
       </div>
 

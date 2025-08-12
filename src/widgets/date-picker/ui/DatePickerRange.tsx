@@ -3,18 +3,25 @@ import { cn } from '@/shared/utils/cn';
 import { formatLabel } from '@/shared/utils/formatLabel';
 import { Calendar } from '@/widgets/calendar';
 import type { DatePickerRangeProps } from '@/widgets/date-picker/model/types';
+import { useState } from 'react';
 import styles from './DatePickerRange.module.css';
 
 export const DatePickerRange = ({ value, onChange, state }: DatePickerRangeProps) => {
+  const [activePopover, setActivePopover] = useState<'from' | 'to' | null>(null);
   const labelFrom = formatLabel(value.from) ?? 'Choose start date';
   const labelTo = formatLabel(value.to) ?? 'Choose end date';
+
+  const closePopover = () => setActivePopover(null);
 
   return (
     <div className={cn([styles.wrapper, state === 'error' && styles.error, state === 'success' && styles.success])}>
       <Popover
+        isOpen={activePopover === 'from'}
+        onClose={closePopover}
         trigger={
           <Button
             title={`Update needed: ${labelFrom}`}
+            onClick={() => setActivePopover(activePopover === 'from' ? null : 'from')}
             className={cn([
               styles.datePopoverButton,
               state === 'error' && styles.error,
@@ -37,9 +44,12 @@ export const DatePickerRange = ({ value, onChange, state }: DatePickerRangeProps
         <Icon name="chevronRight" />
       </div>
       <Popover
+        isOpen={activePopover === 'to'}
+        onClose={closePopover}
         trigger={
           <Button
             title={`Update needed: ${labelTo}`}
+            onClick={() => setActivePopover(activePopover === 'to' ? null : 'to')}
             className={cn([
               styles.datePopoverButton,
               state === 'error' && styles.error,
