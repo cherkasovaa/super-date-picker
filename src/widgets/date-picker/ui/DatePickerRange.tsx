@@ -3,11 +3,9 @@ import { cn } from '@/shared/utils/cn';
 import { formatLabel } from '@/shared/utils/formatLabel';
 import { Calendar } from '@/widgets/calendar';
 import type { DatePickerRangeProps } from '@/widgets/date-picker/model/types';
-import { useState } from 'react';
 import styles from './DatePickerRange.module.css';
 
-export const DatePickerRange = ({ value, onChange, state }: DatePickerRangeProps) => {
-  const [activePopover, setActivePopover] = useState<'from' | 'to' | null>(null);
+export const DatePickerRange = ({ activePopover, setActivePopover, value, onChange, state }: DatePickerRangeProps) => {
   const labelFrom = formatLabel(value.from) ?? 'Choose start date';
   const labelTo = formatLabel(value.to) ?? 'Choose end date';
 
@@ -18,6 +16,7 @@ export const DatePickerRange = ({ value, onChange, state }: DatePickerRangeProps
       <Popover
         isOpen={activePopover === 'from'}
         onClose={closePopover}
+        className={styles.popover}
         trigger={
           <Button
             title={`Update needed: ${labelFrom}`}
@@ -46,6 +45,7 @@ export const DatePickerRange = ({ value, onChange, state }: DatePickerRangeProps
       <Popover
         isOpen={activePopover === 'to'}
         onClose={closePopover}
+        className={styles.popover}
         trigger={
           <Button
             title={`Update needed: ${labelTo}`}

@@ -13,6 +13,10 @@
   background-color: rgb(from var(--color-success) r g b / 20%);
 }
 
+.popover {
+  flex: 1 1 100%;
+}
+
 .date-popover-button {
   inline-size: 100%;
   padding: 0.625rem 0.5rem;
