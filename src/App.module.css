@@ -9,3 +9,13 @@
   font-family: var(--font-primary);
   color: var(--color-text-primary);
 }
+
+.container {
+  display: flex;
+  margin-bottom: 2.5rem;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+}
