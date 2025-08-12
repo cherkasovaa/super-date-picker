@@ -5,7 +5,7 @@ import { cn } from '@/shared/utils/cn';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './Popover.module.css';
 
-export const Popover = ({ isOpen, onClose, trigger, children, offset = 8 }: PopoverProps) => {
+export const Popover = ({ isOpen, onClose, trigger, children, className = '', offset = 8 }: PopoverProps) => {
   const [placement, setPlacement] = useState<PanelPlacement>('bottom');
   const [align, setAlign] = useState<PanelAlign>('start');
   const [shiftX, setShiftX] = useState<number>(0);
@@ -91,7 +91,7 @@ export const Popover = ({ isOpen, onClose, trigger, children, offset = 8 }: Popo
   }, [isOpen, offset, align]);
 
   return (
-    <div ref={rootRef} className={styles.popover}>
+    <div ref={rootRef} className={cn([styles.popover, className])}>
       <div ref={triggerRef} className={cn([styles.trigger, isOpen && styles.triggerOpen])}>
         {trigger}
       </div>

@@ -7,5 +7,6 @@ export interface PopoverProps {
   onClose: () => void;
   trigger: ReactElement<PopoverTriggerProps>;
   children: ReactNode;
+  className?: string;
   offset?: number;
 }

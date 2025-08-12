@@ -2,7 +2,6 @@
   cursor: pointer;
   position: relative;
   display: inline-block;
-  flex: 1 1 100%;
 }
 
 .trigger {
