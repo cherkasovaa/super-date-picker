@@ -1,0 +1,28 @@
+.wrapper {
+  width: max-content;
+  border-width: 0;
+}
+
+.title {
+  float: left;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+}
+
+.container {
+  clear: both;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 0.5rem;
+}
+
+.link {
+  justify-content: flex-start;
+  color: var(--color-text-primary);
+  background-color: transparent;
+}
+
+.link:hover {
+  color: var(--color-button-primary);
+  background-color: transparent;
+}
