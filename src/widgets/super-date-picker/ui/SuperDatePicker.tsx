@@ -1,16 +1,17 @@
 import type { ValidationState } from '@/shared/types/validation';
 import { Button, Icon, Popover } from '@/shared/ui';
+import { compareDates } from '@/shared/utils/compareDates';
 import { DatePickerPresets } from '@/widgets/date-picker/ui/DatePickerPresets/DatePickerPresets';
 import { DatePickerRange } from '@/widgets/date-picker/ui/DatePickerRange';
 import type { SuperDatePickerProps } from '@/widgets/super-date-picker/model/types';
 import { useEffect, useState } from 'react';
 import styles from './SuperDatePicker.module.css';
 
-export const SuperDatePicker = ({ value, onChange }: SuperDatePickerProps) => {
+export const SuperDatePicker = ({ value, appliedValue, onChange, onUpdate }: SuperDatePickerProps) => {
   const [activePopover, setActivePopover] = useState<'presets' | 'from' | 'to' | null>(null);
   const [validation, setValidation] = useState<ValidationState>('default');
 
-  const closePopover = () => setActivePopover(null);
+  const hasChanges = !compareDates(value.from, appliedValue.from) || !compareDates(value.to, appliedValue.to);
 
   useEffect(() => {
     if (!value.from || !value.to) {
@@ -20,6 +21,8 @@ export const SuperDatePicker = ({ value, onChange }: SuperDatePickerProps) => {
 
     setValidation(value.from <= value.to ? 'success' : 'error');
   }, [value]);
+
+  const closePopover = () => setActivePopover(null);
 
   return (
     <div className={styles.wrapper}>
@@ -47,8 +50,8 @@ export const SuperDatePicker = ({ value, onChange }: SuperDatePickerProps) => {
         onChange={onChange}
         state={validation}
       />
-      <Button state={validation} disabled={validation === 'error'}>
-        Update
+      <Button state={validation} disabled={validation === 'error' || !hasChanges} onClick={onUpdate}>
+        {hasChanges ? 'Update' : 'Refresh'}
       </Button>
     </div>
   );
