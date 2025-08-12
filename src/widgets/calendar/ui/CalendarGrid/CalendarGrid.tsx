@@ -1,13 +1,14 @@
 import { Button } from '@/shared/ui';
+import { capitalize } from '@/shared/utils/capitalize';
 import { cn } from '@/shared/utils/cn';
 import { getDateList } from '@/widgets/calendar/lib/getDateList';
 import type { CalendarGridProps } from '@/widgets/calendar/model/types';
-import { capitalize } from '@/shared/utils/capitalize';
+import { isSameDay } from 'date-fns';
 import { useMemo } from 'react';
 import styles from './CalendarGrid.module.css';
 
 export const CalendarGrid = ({ days, onDayClick, selectedDate }: CalendarGridProps) => {
-  const selected = selectedDate?.setHours(0, 0, 0, 0) ?? null;
+  const selected = selectedDate ?? null;
   const weekdayList = useMemo(() => getDateList('weekday', 'short'), []);
 
   return (
@@ -22,12 +23,11 @@ export const CalendarGrid = ({ days, onDayClick, selectedDate }: CalendarGridPro
 
       <div className={styles.month}>
         {days.map((d) => {
-          const timestamp = d.date.getTime();
-          const isSelected = timestamp === selected;
+          const isSelected = selected ? isSameDay(d.date, selected) : false;
 
           return (
             <Button
-              key={timestamp}
+              key={d.date.getTime()}
               className={cn([styles.dayNumber, d.isCurrentMonth && styles.active, isSelected && styles.selected])}
               onClick={() => onDayClick(d.dayOfMonth)}
               disabled={!d.isCurrentMonth}

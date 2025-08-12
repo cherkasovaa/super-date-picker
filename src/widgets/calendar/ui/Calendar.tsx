@@ -1,8 +1,10 @@
+import { TimePicker } from '@/shared/ui/time-picker/TimePicker';
 import { generateCalendarDays } from '@/widgets/calendar/lib/generateCalendarDays';
 import type { CalendarProps } from '@/widgets/calendar/model/types';
 import { CalendarGrid } from '@/widgets/calendar/ui/CalendarGrid/CalendarGrid';
 import { CalendarHeader } from '@/widgets/calendar/ui/CalendarHeader/CalendarHeader';
 import { useState } from 'react';
+import styles from './Calendar.module.css';
 
 export const Calendar = ({ value = null, onChange }: CalendarProps) => {
   const [current, setCurrent] = useState<Date>(value ?? new Date());
@@ -11,7 +13,13 @@ export const Calendar = ({ value = null, onChange }: CalendarProps) => {
   const year = current.getFullYear();
 
   const handleDateSelect = (day: number) => {
-    onChange(new Date(year, month, day));
+    const hh = value?.getHours() ?? 0;
+    const mm = value?.getMinutes() ?? 0;
+    onChange(new Date(year, month, day, hh, mm, 0, 0));
+  };
+
+  const handleTimeSelect = (time: Date) => {
+    onChange(new Date(time));
   };
 
   const shiftMonth = (delta: number) => {
@@ -23,7 +31,7 @@ export const Calendar = ({ value = null, onChange }: CalendarProps) => {
   };
 
   return (
-    <>
+    <div className="month-container">
       <CalendarHeader
         year={year}
         month={month}
@@ -32,7 +40,10 @@ export const Calendar = ({ value = null, onChange }: CalendarProps) => {
         onPrev={() => shiftMonth(-1)}
         onNext={() => shiftMonth(1)}
       />
-      <CalendarGrid days={generateCalendarDays(year, month)} onDayClick={handleDateSelect} selectedDate={value} />
-    </>
+      <div className={styles.datePickerContainer}>
+        <CalendarGrid days={generateCalendarDays(year, month)} onDayClick={handleDateSelect} selectedDate={value} />
+        <TimePicker value={value} onChange={handleTimeSelect} />
+      </div>
+    </div>
   );
 };

@@ -54,3 +54,9 @@
   color: #fff;
   background: #6366f1;
 }
+
+.date-picker-container {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
