@@ -1,4 +1,4 @@
-import '@/shared/styles/theme.module.css';
+import '@/shared/styles/theme.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
